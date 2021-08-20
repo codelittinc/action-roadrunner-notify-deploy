@@ -1,0 +1,17 @@
+name: "Roadrunner Deployment Notifier"
+description: 'Notifies Roadrunner about a deployment'
+inputs:
+  domain:
+    description: 'Domain of your application'
+    required: true
+  environment:
+    description: 'The environment of your application'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Notify deployment
+      uses: fjogeleit/http-request-action@master
+      with:
+        url: "https://api.roadrunner.codelitt.dev/flows?deploy_type=deploy-notification&host=${{ inputs.domain }}&env=${{ inputs.end }}"
+        method: 'POST'
