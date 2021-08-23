@@ -13,5 +13,5 @@ runs:
     - name: Notify deployment
       uses: fjogeleit/http-request-action@master
       with:
-        url: "https://api.roadrunner.codelitt.dev/flows?deploy_type=deploy-notification&host=${{ inputs.domain }}&env=${{ inputs.end }}"
+        url: "https://api.roadrunner.codelitt.dev/flows?deploy_type=deploy-notification&host=${{ inputs.domain }}&env=${{ inputs.environment }}"
         method: 'POST'
