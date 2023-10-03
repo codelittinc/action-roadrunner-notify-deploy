@@ -1,8 +1,8 @@
 name: "Roadrunner Deployment Notifier"
 description: "Notifies Roadrunner about a deployment"
 inputs:
-  domain:
-    description: "The domain of your application"
+  identifier:
+    description: "One of your application's external identifier you set on Codelitt's backstage."
     required: true
   environment:
     description: "The environment of your application"
@@ -13,4 +13,4 @@ runs:
     - name: Send POST request to notify deployment success
       shell: bash
       run: |
-        curl -X POST "https://api.roadrunner.codelitt.dev/flows?status=${{ job.status }}&host=${{ inputs.domain }}&deploy_type=deploy-notification&env=${{ inputs.environment }}"
+        curl -X POST "https://api.roadrunner.codelitt.dev/flows?status=${{ job.status }}&host=${{ inputs.identifier }}&deploy_type=deploy-notification&env=${{ inputs.environment }}"
