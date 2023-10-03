@@ -7,13 +7,10 @@ inputs:
   environment:
     description: "The environment of your application"
     required: true
-  status:
-    description: "The status of the deployment"
-    required: true
 runs:
   using: "composite"
   steps:
     - name: Send POST request to notify deployment success
       shell: bash
       run: |
-        curl -X POST "https://api.roadrunner.codelitt.dev/flows?status=${{ inputs.status }}&host=${{ inputs.domain }}&deploy_type=deploy-notification&env=${{ inputs.environment }}"
+        curl -X POST "https://api.roadrunner.codelitt.dev/flows?status=${{ job.status }}&host=${{ inputs.domain }}&deploy_type=deploy-notification&env=${{ inputs.environment }}"
